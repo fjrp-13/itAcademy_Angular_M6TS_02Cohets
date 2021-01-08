@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+          integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/styles.css">
+    <title>Ejercicio de Cohetes</title>
+</head>
+
+<body>
+    <!-- Main Container -->
+    <main id="main-container" class="container-fluid">
+        <h1 class="text-center mb-3">
+            Ejercicio de Cohetes
+            <button class="btn btn-primary btn-circle btn-circle-sm m-1" data-toggle="modal"
+                    data-target="#modalInstructions">
+                <i class="fa fa-info"></i>
+            </button>
+        </h1>
+        <!-- car card -->
+        <div id="rocketCard" class="card">
+            <h3 class="card-header">
+                <i class="fas fa-rocket"></i> Cohetes
+            </h3>
+            <div class="card-body">
+                <div class="container ml-0">
+                    <form id="rocketForm" action="">
+                        <h5><i class="fa fa-info-circle" aria-hidden="true"></i> Datos del cohete</h5>
+                        <hr class="mt-0">
+                        <p class="required-msg-info text-muted">Datos obligatorios</p>
+                        <div class="form-row">
+                            <div class="form-group col-sm-4">
+                                <label for="rocketCode" class="required">Código</label>
+                                <input type="text" class="form-control" id="rocketCode" name="rocketCode"
+                                       placeholder="Código" value="">
+                                <div class="invalid-feedback" id="rocketCodeError"></div>
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <label for="rocketNumBoosters" class="required">Nº Propulsores</label>
+                                <input type="text" class="form-control" id="rocketNumBoosters" name="rocketNumBoosters"
+                                       placeholder="Propulsores" value="">
+                                <div class="invalid-feedback" id="rocketNumBoostersError"></div>
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <label for="rocketPower" class="required">Potencia de cada
+                                    propulsor</label>
+                                <span class="booster-advice"></span>
+                                <input type="text" class="form-control" id="rocketPower" name="rocketPower"
+                                       placeholder="Potencias" value="">
+                                <div class="invalid-feedback" id="rocketPowerError"></div>
+                                <span class="label-note text-muted">
+                                    (separadas por &quot;,&quot; y deben sumar
+                                    <span class="needed-power-to-finish"></span>
+                                    para poder finalizar la carrera)
+                                </span>
+                            </div>
+                        </div>
+                        <a href="#" id="submitRocket" class="btn btn-success visible"
+                           onclick="doSubmit('rocketForm');">
+                            <i class="fa fa-plus fa-fw mr-1"></i>Crear cohete
+                        </a>
+                    </form><!-- /#rocketForm -->
+                </div><!-- /.container -->
+            </div><!-- /card-body -->
+        </div><!-- /.card -->
+
+        <!-- rocket-list card -->
+        <div id="rocketsListCard" class="card mt-3">
+            <h3 class="card-header">
+                <i class="fas fa-list"></i> Lista de cohetes
+            </h3>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="rocketsTable" class="table table-striped table-bordered table-sm">
+                        <thead>
+                            <tr>
+                                <th class="joystick">Control del cohete</th>
+                                <th>Código</th>
+                                <th>Nº Propulsores</th>
+                                <th>Potencia de los propulsores</th>
+                                <th>Potencia total</th>
+                                <th>Potencia actual</th>
+                                <th>Potencia restante</th>
+                            </tr>
+                        </thead>
+                        <tbody id="rocketsTableBody">
+                        </tbody>
+                    </table>
+                </div>
+                <div id="startRaceButtons">
+                    <a href="#" class="btn btn-success start-race-button disabled"
+                       onclick="startRace(); return false;">
+                        <i class="fas fa-flag-checkered mr-1"></i>Empezar carrera
+                    </a>
+                </div>
+            </div>
+        </div><!-- /#rocketsListCard -->
+
+        <!-- Race Actions -->
+        <div id="race-actions" class="mt-3 d-none">
+            <div id="groupalRrocketJoystick" class="text-center">
+                <label>Joystick común</label>
+                <ul class="rocket-joystick pagination">
+                    <li class="page-item rocket-joystick-item"><a href="#" class="page-link" aria-label="Step back"
+                           onclick="brakeAllRockets(); return false;"><span aria-hidden="true">&laquo;&laquo;</span></a>
+                    </li>
+                    <li class="page-item rocket-joystick-item"><a href="#" class="page-link" aria-label="Step forward"
+                           onclick="accelerateAllRockets(); return false;"><span
+                                  aria-hidden="true">&raquo;&raquo;</span></a>
+                    </li>
+                </ul>
+            </div>
+
+            <a href="#" class="btn btn-info btn-restart-race ml-2" onclick="restartRace(); return false;"
+               style="padding:10px;">
+                <i class="fas fa-undo mr-1"></i>Reiniciar carrera
+            </a>
+
+        </div>
+        <div id="race-stadium" class="race-stadium card mt-3">
+            <div class="race-stadium-title">Rocket Race</div>
+        </div><!-- /#outerspace -->
+    </main><!-- /#main-container -->
+
+    <!-- Modal Instrucciones -->
+    <div class="modal fade" id="modalInstructions" tabindex="-1" aria-labelledby="instructionsTitle" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="instructionsTitle">Instrucciones</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <ol>
+                        <li>Crea tantos cohetes como necesites.</li>
+                        <li>Una vez añadido los cohetes, pulsa el botón <mark>"Empezar carrera"</mark> para empezar
+                            la carrera.</li>
+                        <li>Mueve cada cohete de manera individual mediante su <mark>"Control del cohete"</mark> de
+                            la tabla.</li>
+                        <li>O mueve todos los cohetes a la vez con el <mark>"Joystick común"</mark>.</li>
+                        <li>Para reiniciar la carrera, pulsa el botón <mark>"Reiniciar carrera"</mark>.</li>
+                    </ol>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- jQuery, Popper.js, and Bootstrap JS -->
+    <!-- El jQuery slim de Bootstrap 4.5 NO es completo (p.e. le falta el fadeOut) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+            integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+            integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
+            integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
+            crossorigin="anonymous"></script>
+    <!-- FontAwesome -->
+    <script src="https://kit.fontawesome.com/0a45d04076.js" crossorigin="anonymous"></script>
+
+    <!-- Custom -->
+    <script src="../models/rocket.js"></script>
+    <script src="../models/booster.js"></script>
+    <script src="../controllers/controller.js"></script>
+    <script>
+        $(function () {
+            let neededPowerToFinish = APP_CONFIG.powerMovementUnit * APP_CONFIG.powerStepsToFinish;
+            $('.needed-power-to-finish').text(neededPowerToFinish);
+        });
+        function startRace() {
+            $('#startRaceButtons').fadeOut();
+            $('#rocketCard').slideUp();
+            $('#outerspace').fadeIn();
+            // $('#groupalRrocketJoystick').addClass('d-none');
+            $('.rocket-joystick-item').removeClass('disabled');
+            $('#race-actions').removeClass('d-none');
+        }
+        function startRaceGroupal() {
+            $('#startRaceButtons').fadeOut();
+            $('#rocketCard').slideUp();
+            $('#outerspace').fadeIn();
+            $('#groupalRrocketJoystick').removeClass('d-none').find('.rocket-joystick-item').removeClass('disabled');
+            $('#race-actions').removeClass('d-none');
+        }
+
+        function convertStringToNumber(input) {
+            if (!input)
+                return NaN;
+            if (input.trim().length == 0) {
+                return NaN;
+            }
+            return Number(input);
+        }
+
+    </script>
+</body>
+
+</html>

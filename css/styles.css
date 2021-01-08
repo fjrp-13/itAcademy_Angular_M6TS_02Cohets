@@ -1,0 +1,166 @@
+@charset "UTF-8";
+* {
+  /* Border y Padding incluídos en los width y height */
+  box-sizing: border-box; }
+
+form label:not(.form-check-label) {
+  font-weight: bold; }
+
+.required:after {
+  content: "*";
+  font-size: 100%;
+  font-weight: bold;
+  color: #ff000e;
+  color: #ff000e;
+  margin-left: 0.15rem; }
+
+.required-msg-info {
+  display: block;
+  width: 100%;
+  margin-bottom: .25rem;
+  font-size: 90%; }
+  .required-msg-info:before {
+    content: "*";
+    font-size: 100%;
+    font-weight: bold;
+    color: #ff000e;
+    color: #ff000e;
+    margin-right: 0.15rem; }
+
+.label-note {
+  display: block;
+  width: 100%;
+  margin-bottom: .25rem;
+  font-size: 90%; }
+
+.rotate-45-right {
+  -o-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg); }
+
+/*
+*
+* ==========================================
+* CUSTOM UTIL CLASSES
+* ==========================================
+*
+*/
+.btn-circle {
+  width: 45px;
+  height: 45px;
+  line-height: 45px;
+  text-align: center;
+  padding: 0;
+  border-radius: 50%; }
+  .btn-circle i {
+    position: relative;
+    top: -1px; }
+
+.btn-circle-sm {
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  font-size: 0.9rem; }
+
+.btn-circle-lg {
+  width: 55px;
+  height: 55px;
+  line-height: 55px;
+  font-size: 1.1rem; }
+
+.btn-circle-xl {
+  width: 70px;
+  height: 70px;
+  line-height: 70px;
+  font-size: 1.3rem; }
+
+.needed-power-to-finish {
+  font-weight: bold; }
+
+#rocketsTable td {
+  vertical-align: middle; }
+#rocketsTable th {
+  vertical-align: middle; }
+#rocketsTable .page-link {
+  line-height: 1em; }
+#rocketsTable .joystick {
+  max-width: 60px; }
+
+#race-actions #groupalRrocketJoystick {
+  font-size: 1.5rem;
+  margin: 0;
+  margin-left: 1em;
+  display: inline-block;
+  text-align: center;
+  margin-right: 0.25em;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 0 8px 8px 8px; }
+  #race-actions #groupalRrocketJoystick label {
+    font-weight: bold;
+    font-size: 1rem; }
+  #race-actions #groupalRrocketJoystick ul {
+    margin-left: 0.25em; }
+#race-actions .btn-restart-race {
+  display: inline-block;
+  padding: 10px;
+  position: relative;
+  top: -15px; }
+
+.rocket-joystick {
+  font-size: 1.5rem;
+  margin: 0;
+  margin-left: 1em; }
+
+.rocket-joystick-item.disabled {
+  cursor: not-allowed; }
+
+.race-stadium {
+  position: relative;
+  min-height: 400px;
+  background: #0c0440 url(../img/outerspace.jpg);
+  color: goldenrod;
+  font-size: 1.25em;
+  overflow: hidden; }
+  .race-stadium .race-stadium-title {
+    font-weight: bold;
+    text-align: center;
+    color: floralwhite;
+    font-size: 1.5em; }
+  .race-stadium .rocket-lane {
+    padding: 0.25em 0 1.25em 0;
+    border-top: 1px solid floralwhite;
+    -webkit-transition: all 1000ms ease;
+    transition: all 1000ms ease; }
+    .race-stadium .rocket-lane i {
+      font-size: 4em; }
+    .race-stadium .rocket-lane .rocket-lane-title {
+      font-weight: bold;
+      text-align: center; }
+    .race-stadium .rocket-lane .rocket-lane-icon {
+      text-align: center;
+      width: 100px;
+      display: inline-block; }
+      .race-stadium .rocket-lane .rocket-lane-icon.booster-empty {
+        color: #ff000e; }
+        .race-stadium .rocket-lane .rocket-lane-icon.booster-empty:after {
+          text-transform: uppercase;
+          text-align: center;
+          font-size: 1.25em;
+          display: inline-block;
+          width: 100%;
+          content: "empty"; }
+    .race-stadium .rocket-lane.winner {
+      color: #05ff01;
+      padding-left: 48%; }
+      .race-stadium .rocket-lane.winner .rocket-lane-icon.booster-empty {
+        color: #05ff01; }
+      .race-stadium .rocket-lane.winner .rocket-lane-icon:after {
+        text-transform: uppercase;
+        text-align: center;
+        font-size: 1.25em;
+        display: inline-block;
+        width: 100%;
+        content: "winner!!!";
+        overflow: visible;
+        white-space: nowrap; }

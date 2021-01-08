@@ -1,0 +1,25 @@
+$breakpoints: (phone: 576px, // Small devices (landscape phones, 576px and up)
+               tablet: 768px, // Medium devices (tablets, 768px and up)
+               desktop: 992px, // Large devices (desktops, 992px and up)
+               extra-large-screen: 1200px // Extra large devices (large desktops, 1200px and up)
+               ) !default;
+// $breakpoints: (phone: 640px,
+//                tablet: 768px, 
+//                desktop: 1024px) !default;
+
+// ------------- F O R M S (ini) -------------
+$required-icon-color: #ff000e;
+// ------------- F O R M S (fin) -------------
+// ------------- A P P (ini) -------------
+$race-stadium-bgcolor: #0c0440;
+$race-stadium-bgimage: url(../img/outerspace.jpg);
+$race-stadium-color: goldenrod;
+$race-stadium-title-color: floralwhite;
+
+$rocket-lane-border-color: floralwhite;
+
+$rocket-winner-msg: "winner!!!";
+$rocket-winner-color: #05ff01;
+$rocket-empty-booster-msg: "empty";
+$rocket-empty-booster-color: #ff000e;
+// ------------- A P P (fin) -------------

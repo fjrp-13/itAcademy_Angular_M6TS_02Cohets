@@ -1,0 +1,138 @@
+@mixin joystick-controls {
+    font-size: 1.5rem;
+    margin: 0;
+    margin-left: 1em;
+}
+
+@mixin rocket-message {
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 1.25em;
+    display: inline-block;
+    width: 100%;
+}
+
+@mixin text-bold {
+    font-weight: bold;
+}
+
+@mixin rocket-movement-effect {
+    -webkit-transition: all 1000ms ease;
+    transition: all 1000ms ease;
+}
+
+.needed-power-to-finish {
+    @include text-bold;
+}
+
+// Rocket Table
+#rocketsTable {
+    & td {
+        @include valign-middle;
+    }
+    & th {
+        @include valign-middle;
+    }
+    & .page-link {
+        line-height: 1em;
+    }
+    & .joystick {
+        max-width: 60px;
+    }
+
+
+}
+
+#race-actions {
+    & #groupalRrocketJoystick {
+        @include joystick-controls;
+        display: inline-block;
+        text-align: center;
+        margin-right: 0.25em;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 0 8px 8px 8px;
+        & label {
+            @include text-bold;
+            font-size:1rem;
+        }
+        & ul {
+            margin-left: 0.25em;
+        }
+    }
+    & .btn-restart-race {
+        display: inline-block;
+        // margin-bottom: 0.5rem;
+        padding: 10px;
+        position: relative;
+        top: -15px;
+    }
+}
+
+// Joystick Controls
+.rocket-joystick {
+    @include joystick-controls;
+}
+.rocket-joystick-item {
+    &.disabled {
+        cursor: not-allowed;
+    }
+}
+
+// Race Stadium
+.race-stadium {
+    position: relative;
+    min-height: 400px;
+    background: $race-stadium-bgcolor $race-stadium-bgimage;
+    color: $race-stadium-color;
+    font-size: 1.25em;
+    overflow: hidden;
+    & .race-stadium-title {
+        font-weight: bold;
+        text-align: center;
+        color: $race-stadium-title-color;
+        font-size: 1.5em;
+    }
+
+    & .rocket-lane {
+        padding: 0.25em 0 1.25em 0;
+        border-top: 1px solid $rocket-lane-border-color;
+        @include rocket-movement-effect;
+        & i {
+            font-size: 4em;
+        }
+
+        & .rocket-lane-title {
+            font-weight: bold;
+            text-align: center;
+        }
+        & .rocket-lane-icon {
+            text-align:center;
+            width: 100px;
+            display: inline-block;
+            &.booster-empty {
+                color: $rocket-empty-booster-color;
+                &:after {
+                    @include rocket-message;
+                    content: $rocket-empty-booster-msg;
+                }
+            }
+        }
+        &.winner {
+            color: $rocket-winner-color;
+            padding-left: 48%;
+            & .rocket-lane-icon {
+                &.booster-empty {
+                    color: $rocket-winner-color;
+                }   
+                &:after {
+                    @include rocket-message;
+                    content: $rocket-winner-msg;
+                    overflow: visible;
+                    white-space: nowrap;
+                }
+            }
+        }
+    }
+}
+

@@ -1,0 +1,100 @@
+
+@mixin required-icon {
+    content: "*";
+    font-size: 100%;
+    font-weight: bold;
+    color: #ff000e;
+    color: $required-icon-color;
+}
+@mixin required-icon-after {
+    @include required-icon;
+    margin-left: 0.15rem;
+
+}
+@mixin required-icon-before {
+    @include required-icon;
+    margin-right: 0.15rem;
+}
+
+@mixin label-info {
+    display: block;
+    width: 100%;
+    margin-bottom: .25rem;
+    font-size: 90%;
+}
+
+@mixin valign-middle {
+    vertical-align: middle;
+}
+
+form {
+    & label {
+        &:not(.form-check-label) {
+            font-weight: bold;
+        }
+    }
+}
+
+.required {
+    &:after {
+        @include required-icon-after;
+    }
+}
+
+.required-msg-info {
+    @include label-info;
+    &:before {
+        @include required-icon-before;
+    }
+}
+
+.label-note {
+    @include label-info;
+}
+
+.rotate-45-right {
+    -o-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+/*
+*
+* ==========================================
+* CUSTOM UTIL CLASSES
+* ==========================================
+*
+*/
+.btn-circle {
+    width: 45px;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    padding: 0;
+    border-radius: 50%;
+    & i {
+        position: relative;
+        top: -1px;
+    }
+  }
+  
+  .btn-circle-sm {
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    font-size: 0.9rem;
+  }
+  
+  .btn-circle-lg {
+    width: 55px;
+    height: 55px;
+    line-height: 55px;
+    font-size: 1.1rem;
+  }
+  
+  .btn-circle-xl {
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+    font-size: 1.3rem;
+  }
