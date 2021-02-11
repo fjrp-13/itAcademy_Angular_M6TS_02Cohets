@@ -124,7 +124,7 @@ function validateBoostersPowers(boosterPowerCSV, numBoosters) {
 function validateRocket(form) {
     var errorFound = false;
     var validationObj = {
-        code: { id: "rocketCode", msgErrorReq: "Código obligatorio", msgErrorFormato: "Formato incorrecto." },
+        code: { id: "rocketCode", msgErrorReq: "Código obligatorio", msgErrorFormato: "Formato incorrecto (8 carácteres alfanuméricos)." },
         numBoosters: { id: "rocketNumBoosters", msgErrorReq: "Nº de propulsores obligatorio", msgErrorFormato: "Formato incorrecto." },
         power: { id: "rocketPower", msgErrorReq: "Potencia de los propulsores obligatoria", msgErrorFormato: "Formato incorrecto." }
     };
